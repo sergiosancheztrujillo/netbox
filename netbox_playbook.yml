@@ -1,0 +1,15 @@
+---
+- hosts: netbox
+  become: yes
+
+  tasks:
+  - name: Install postgresql
+    apt: name={{ item }} state=latest
+    with_items:
+      - postgresql
+      - libpq-dev
+
+  - name: Start postgresql service
+    service: name=postgresql status=started
+
+    
